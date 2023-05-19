@@ -19,7 +19,9 @@ function randomNumber() {
 }
 
 function playRound(computerChoice) {
-
+    //play a round
+    //getHumanChoice
+    //getComputerChoice
     let humanInput = prompt("Give me rock, paper, scissors");
     let humanInputUpper = humanInput.toUpperCase(humanInput);
     let humanNumber;
@@ -42,17 +44,64 @@ function playRound(computerChoice) {
             break;
         
     }
-    //compare that number to computer, and declare winner
-    //toUpperCase()
-    console.log(humanNumber);
+    let winner;
+    switch (humanNumber) {
 
+        case 1:
+            if (computerChoice === 2) {
+                winner = "Computer"; }
+                else if (computerChoice ===3) {
+                    winner = "Human";}
+               else {winner = "Draw";}
+            
+            break;
+        case 2:
+            if (computerChoice === 3) {
+                winner = "Computer"; }
+                else if (computerChoice ===1) {
+                    winner = "Human";}
+               else {winner = "Draw";}    
+            break;
+
+        case 3:
+                if (computerChoice === 1) {
+                    winner = "Computer"; }
+                else if (computerChoice ===2) {
+                    winner = "Human";}
+               else {winner = "Draw";}            
+            break;
+
+        case 4:
+            console.log("you messed up");
+            break;
+
+        default:
+            console.log("hum");
+            break;
+
+
+    }
+    //compare that number to computer, and declare winner
+    console.log(winner);
+    console.log("The computer is at ", computerChoice);
+    console.log("The human is at ", humanNumber);
+    console.log("1=Rock, 2= Paper, 3=Scissors");
+
+
+    return winner;
 }
 
+
+let winsHuman;
+let winsComputer;
+let totalGames = 0;
+
+while (totalGames<6) {
+
+}
 playRound(getComputerChoice());
 
-//play a round
-//getHumanChoice
-//getComputerChoice
+
 //return Winner, save in ‘Winner’ variable
 //mention Winner
 //increment score
