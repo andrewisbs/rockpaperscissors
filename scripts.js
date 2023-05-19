@@ -92,14 +92,32 @@ function playRound(computerChoice) {
 }
 
 
-let winsHuman;
-let winsComputer;
+
 let totalGames = 0;
 
 while (totalGames<6) {
 
+    let winsHuman;
+    let winsComputer;
+    winner = playRound(getComputerChoice());
+
+    switch (winner) {
+        case "Human":
+            winsHuman++;
+            break;
+        case "Computer":
+            winsComputer++;
+            break;
+        case "Draw":
+            totalGames--;
+            break;
+        default:
+            break;
+    }
+
+
 }
-playRound(getComputerChoice());
+
 
 
 //return Winner, save in ‘Winner’ variable
