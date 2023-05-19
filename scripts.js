@@ -86,19 +86,25 @@ function playRound(computerChoice) {
     console.log("The computer is at ", computerChoice);
     console.log("The human is at ", humanNumber);
     console.log("1=Rock, 2= Paper, 3=Scissors");
-
+//return Winner, save in ‘Winner’ variable
+//mention Winner
 
     return winner;
 }
 
 
 
+
+
+
+
+
 let totalGames = 0;
+let winsHuman = 0;
+let winsComputer = 0;
+while (totalGames < 6) {
 
-while (totalGames<6) {
 
-    let winsHuman;
-    let winsComputer;
     winner = playRound(getComputerChoice());
 
     switch (winner) {
@@ -114,14 +120,16 @@ while (totalGames<6) {
         default:
             break;
     }
+    console.log("How many Games? We're at: ", totalGames);
+    console.log("Last Victorious Party : ", winner);
+    console.log("Human Score: ", winsHuman);
+    console.log("Computer Score: ", winsComputer);
+    totalGames++;
 
 
 }
 
 
-
-//return Winner, save in ‘Winner’ variable
-//mention Winner
 //increment score
 //display score
 //repeat 5 times
