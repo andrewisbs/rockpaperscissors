@@ -37,13 +37,15 @@ function game(number) {
 
     console.log("human: " +humanWins);
         console.log("computer: "+ computerWins);
-        return 0;
-
-    if (humanWine > computerWins){
-        console.log("Congrats, you won the game");
+        
+    if (humanWins > computerWins){
+        console.log("You won the game!!!!");
     } else {
-        console.log("I don't know what happened, but you totally lost");
+        console.log("I don't know what happened, but you totally lost :( ");
     }
+    
+  
+
 }
 
 
