@@ -5,24 +5,46 @@
 //I think, just keep track of the first 3 letters
 //Tie, Sor, Con, and count those
 
-game(6);
+game(5);
 
 
 
 function game(number) {
 
-    let humanWins;
-    let computerWins;
-    
-    for (0 ;number> 0;number-1){
+    let humanWins=0;
+    let computerWins =0;
+    let resultString;
+    let scoreString;
+    for (0 ; number>0;number--){
 
-        console.log("do something")
+        
+        console.log(number + " is how many games are left");
+        resultString = round(prompt("Give me Rock, Paper, or Scissors!"),getComputerChoice());
+        console.log(resultString);
+        scoreString = resultString.slice(0,3);
+        if (scoreString == "Tie") {
+            number+=1;
+        } else if (scoreString == "Sor"){
+            computerWins +=1;   
+        } else if (scoreString == "Con") {
+            humanWins +=1;
+        } else {
+            number+=1;
+        }
+
         
     }
 
+    console.log("human: " +humanWins);
+        console.log("computer: "+ computerWins);
+        return 0;
 
+    if (humanWine > computerWins){
+        console.log("Congrats, you won the game");
+    } else {
+        console.log("I don't know what happened, but you totally lost");
+    }
 }
-
 
 
 function round(playerChoice, computerChoice) {
@@ -64,7 +86,7 @@ function round(playerChoice, computerChoice) {
         break;
 
         default:
-        console.error("What???");
+        return "You have to pick a proper one!!!";
         break;
 
 
@@ -72,7 +94,7 @@ function round(playerChoice, computerChoice) {
     
 }
 //remove when I'm done, this is just to make sure it's working
-console.log(round(prompt("Give me Rock, Paper, or Scissors!"),getComputerChoice()));
+
 
 
 
