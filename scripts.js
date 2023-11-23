@@ -1,11 +1,28 @@
 
+//next, game() function
+//inside, 5 rounds. Needs to keep score
+//needs to declare a winner
+//I think, just keep track of the first 3 letters
+//Tie, Sor, Con, and count those
+
+game(6);
 
 
 
-//next: I need a function that takes two variables 1 playerselction, 2 
-//computer selection, and returns the winner. From the view of the 
-//human. To start, I will hard code values, next I will use input
-//needs to be case insensitive.
+function game(number) {
+
+    let humanWins;
+    let computerWins;
+    
+    for (0 ;number> 0;number-1){
+
+        console.log("do something")
+        
+    }
+
+
+}
+
 
 
 function round(playerChoice, computerChoice) {
@@ -54,7 +71,7 @@ function round(playerChoice, computerChoice) {
     }
     
 }
-
+//remove when I'm done, this is just to make sure it's working
 console.log(round(prompt("Give me Rock, Paper, or Scissors!"),getComputerChoice()));
 
 
