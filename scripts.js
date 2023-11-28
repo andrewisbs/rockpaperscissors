@@ -1,55 +1,100 @@
 
-//next, game() function
-//inside, 5 rounds. Needs to keep score
-//needs to declare a winner
-//I think, just keep track of the first 3 letters
-//Tie, Sor, Con, and count those
+const choice = document.querySelector("#choice");
+const screenUpdate = document.querySelector("#results");
+const tiesPara = document.createElement('p');
+const tiesHeader =document.createElement('h3');
+const humWinsPara = document.createElement('p');
+const humWinsHeader =document.createElement('h3');
+const compWinsPara = document.createElement('p');
+const compWinsHeader =document.createElement('h3');
+const roundNumber = document.createElement('h4');
+const winnerAnnounce = document.createElement('h2');
 
-game(5);
+const roundAnnouncement = document.createElement('h3');
+//human wins...
+//rounds...
+let ties = 0;
+let computerWins = 0;
+let humanWins = 0;
+let rounds = 0;
 
+choice.addEventListener('click', (event) => {
+    let target = event.target.textContent;
+    round(target);
+    updateScreen();
+    declareWinner();
+});
 
-
-function game(number) {
-
-    let humanWins=0;
-    let computerWins =0;
-    let resultString;
-    let scoreString;
-    for (0 ; number>0;number--){
-
-        
-        console.log(number + " is how many games are left");
-        resultString = round(prompt("Give me Rock, Paper, or Scissors!"),getComputerChoice());
-        console.log(resultString);
-        scoreString = resultString.slice(0,3);
+function round(choice) {
+    let resultString = eachRound(choice,getComputerChoice());
+    let scoreString = resultString.slice(0,3);
         if (scoreString == "Tie") {
-            number+=1;
+            ties+=1;
         } else if (scoreString == "Sor"){
             computerWins +=1;   
         } else if (scoreString == "Con") {
             humanWins +=1;
         } else {
-            number+=1;
+            //number+=1;
         }
-
-        
+        rounds++;
     }
 
-    console.log("human: " +humanWins);
-        console.log("computer: "+ computerWins);
-        
-    if (humanWins > computerWins){
-        console.log("You won the game!!!!");
-    } else {
-        console.log("I don't know what happened, but you totally lost :( ");
-    }
-    
-  
-
+function clearScreen() {
+    screenUpdate.removeChild(tiesPara);
 }
 
+function updateScreen() {
+while(screenUpdate.firstChild){
+    screenUpdate.removeChild(screenUpdate.firstChild);
+}
+    console.log(ties, computerWins, humanWins, rounds);
+//I need to create an 4 h3's, 
 
-function round(playerChoice, computerChoice) {
+tiesHeader.textContent = 'Ties';
+tiesPara.textContent = ties;
+screenUpdate.appendChild(tiesHeader);
+screenUpdate.appendChild(tiesPara);
+compWinsHeader.textContent = 'Computer Wins';
+compWinsPara.textContent = computerWins;
+screenUpdate.appendChild(compWinsHeader);
+screenUpdate.appendChild(compWinsPara);
+humWinsHeader.textContent = 'Human Wins';
+humWinsPara.textContent = humanWins;
+screenUpdate.appendChild(humWinsHeader);
+screenUpdate.appendChild(humWinsPara);
+roundNumber.textContent = rounds;
+roundAnnouncement.textContent = "Rounds:"
+screenUpdate.appendChild(roundAnnouncement);
+screenUpdate.appendChild(roundNumber);
+
+   
+}
+function reset() {
+    ties = 0;
+    computerWins = 0;
+    humanWins = 0;
+    rounds = 0;
+}
+function declareWinner() {
+    if(computerWins == 5 || humanWins ==5)
+    {
+        
+        if (computerWins > humanWins) {
+            winnerAnnounce.textContent = "YOU LOST"
+            screenUpdate.appendChild(winnerAnnounce);
+            reset();
+        } else {
+            winnerAnnounce.textContent = "YOU WON"
+            screenUpdate.appendChild(winnerAnnounce);
+            reset();
+        }
+        
+
+    } else {winnerAnnounce.textContent = ""}
+}
+
+function eachRound(playerChoice, computerChoice) {
     let playerChoiceCleaned = playerChoice.toLowerCase();
     let returnString;
     if (playerChoiceCleaned==computerChoice) {
@@ -57,8 +102,8 @@ function round(playerChoice, computerChoice) {
         return returnString;
     }
     switch (playerChoiceCleaned) {
-        case "rock":
-            if (computerChoice == "paper") {
+        case 'rock':
+            if (computerChoice == 'paper') {
                 returnString = "Sorry, " + computerChoice + " beats " + playerChoiceCleaned + ".";
                 return returnString;
             } else {
@@ -66,9 +111,8 @@ function round(playerChoice, computerChoice) {
                 return returnString;
             }
         break;
-
-        case "paper":
-            if (computerChoice == "scissors") {
+        case 'paper':
+            if (computerChoice == 'rock') {
                 returnString = "Sorry, " + computerChoice + " beats " + playerChoiceCleaned + "."
                 return returnString;
         } else {
@@ -76,9 +120,8 @@ function round(playerChoice, computerChoice) {
             return returnString;
         }
         break;
-
-        case "scissors":
-        if (computerChoice == "rock") {
+        case 'scissors':
+        if (computerChoice == 'rock') {
             returnString = "Sorry, " + computerChoice + " beats " + playerChoiceCleaned + "."
                 return returnString;
         } else {
@@ -86,24 +129,11 @@ function round(playerChoice, computerChoice) {
                 return returnString;
         }
         break;
-
         default:
         return "You have to pick a proper one!!!";
         break;
-
-
     }
-    
 }
-//remove when I'm done, this is just to make sure it's working
-
-
-
-
-
-
-
-
 
 function getComputerChoice() {
     let randomNumber= Math.random();
@@ -113,13 +143,13 @@ function getComputerChoice() {
     let computerChoice;
     switch (randomNumber){
         case 0:
-            computerChoice = "rock";
+            computerChoice = 'paper';
             break;
         case 1:
-            computerChoice = "paper";
+            computerChoice = 'rock';
             break;
         case 2:
-            computerChoice = "scissors";
+            computerChoice = 'scissors';
             break;
         default:
             console.log("something horrible happened");
